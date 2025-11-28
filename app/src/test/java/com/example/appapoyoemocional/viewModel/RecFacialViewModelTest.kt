@@ -5,7 +5,14 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.Face
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import io.mockk.verify
+import io.mockk.impl.annotations.MockK
+import io.mockk.coEvery // Mantenemos coEvery para la sintaxis de captura de lambda, aunque la llamada es 'every'
+import io.mockk.invoke
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -17,13 +24,12 @@ import kotlinx.coroutines.test.setMain
 class RecFacialViewModelTest : BehaviorSpec({
 
     val testDispatcher = StandardTestDispatcher()
-    lateinit var viewModel: RecFacialViewModel
 
     // Mocks de dependencias externas (ML Kit)
     val mockInputImage = mockk<InputImage>()
     val mockFace1 = mockk<Face>()
 
-    // Configuración de Corrutinas (sin @get:Rule)
+    // Configuración de Corrutinas
     beforeSpec {
         Dispatchers.setMain(testDispatcher)
     }
@@ -32,28 +38,29 @@ class RecFacialViewModelTest : BehaviorSpec({
         Dispatchers.resetMain()
     }
 
-    beforeEach {
-        viewModel = RecFacialViewModel()
-    }
+    // El beforeEach fue eliminado para mover la inicialización a cada Given.
 
     // --- ESCENARIO 1: DETECCIÓN EXITOSA DE ROSTROS ---
 
     Given("El ViewModel y una imagen que resulta en detección exitosa") {
 
+        // CORRECCIÓN CLAVE: Inicializar el ViewModel aquí (soluciona UninitializedPropertyAccessException)
+        val viewModel = RecFacialViewModel()
+
         val expectedFaces = listOf(mockFace1)
 
-        // 1. Habilitar mocking para la clase estática/Object RecFacialModel
+        // Habilitar mocking para la clase estática/Object RecFacialModel
         mockkObject(RecFacialModel)
 
-        // 2. Definir el comportamiento del mock (Simular éxito y capturar el callback)
-        coEvery {
+        // Definir el comportamiento del mock (Simular éxito y capturar el callback)
+        every { // Usar 'every' ya que detectFaces no es suspend
             RecFacialModel.detectFaces(
                 image = any(),
                 onResult = captureLambda(), // Capturamos la función onResult
                 onError = any()
             )
         } answers {
-            // 3. Ejecutamos el callback 'onResult' con los rostros simulados
+            // Ejecutamos el callback 'onResult' con los rostros simulados
             lambda<(List<Face>) -> Unit>().invoke(expectedFaces)
         }
 
@@ -63,7 +70,7 @@ class RecFacialViewModelTest : BehaviorSpec({
             runTest(testDispatcher) {
                 Then("El StateFlow 'faces' debe actualizarse con la lista de rostros detectados") {
                     viewModel.faces.value shouldBe expectedFaces
-                    viewModel.error.value shouldBe null // No debe haber error
+                    viewModel.error.value shouldBe null
                 }
 
                 Then("El método detectFaces debe haber sido llamado") {
@@ -72,7 +79,7 @@ class RecFacialViewModelTest : BehaviorSpec({
             }
         }
 
-        // Limpiar el mocking estático después del test
+        // Limpiar el mocking estático después del Given
         unmockkObject(RecFacialModel)
     }
 
@@ -80,12 +87,15 @@ class RecFacialViewModelTest : BehaviorSpec({
 
     Given("El ViewModel y una imagen que resulta en un error de detección") {
 
+        // CORRECCIÓN CLAVE: Inicializar el ViewModel aquí
+        val viewModel = RecFacialViewModel()
+
         val errorMessage = "Fallo de inicialización de cámara"
         val mockException = Exception(errorMessage)
 
         mockkObject(RecFacialModel)
 
-        coEvery {
+        every { // Usar 'every' ya que detectFaces no es suspend
             RecFacialModel.detectFaces(
                 image = any(),
                 onResult = any(),
@@ -104,6 +114,8 @@ class RecFacialViewModelTest : BehaviorSpec({
                     viewModel.faces.value shouldBe emptyList()
                     viewModel.error.value shouldBe errorMessage
                 }
+
+                verify(exactly = 1) { RecFacialModel.detectFaces(any(), any(), any()) }
             }
         }
 

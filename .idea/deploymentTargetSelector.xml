@@ -5,13 +5,16 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="pantalla muestra datos y boton vuelve()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="EmocionGuardadaScreenTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Tests in 'com.example.appapoyoemocional'">
+      <SelectionState runConfigName="RespiraScreenTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="pantalla muestra titulo, imagen y texto()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="pantallaMuestraTituloImagenTexto()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

@@ -22,7 +22,7 @@ class RespiraScreenTest {
     val composeRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
-    fun `pantalla muestra titulo, imagen y texto`() {
+    fun pantallaMuestraTituloImagenTexto() {
         val fakeNavController = mockk<NavController>(relaxed = true)
         val viewModel = RespiraViewModel()
 

@@ -2,6 +2,7 @@ package com.example.appapoyoemocional.repositoryTest
 
 import android.net.Uri
 import com.example.appapoyoemocional.repository.PerfilRepositorio
+import io.mockk.mockk // Importar mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.*
@@ -24,7 +25,9 @@ class PerfilRepositorioTest {
     @Test
     fun `updateImage debe actualizar la imagen del perfil`() = runTest {
         val repositorio = PerfilRepositorio()
-        val nuevaUri = Uri.parse("content://imagen_nueva")
+
+        // CORRECCIÓN LÍNEA 27: Usar mockk en lugar de Uri.parse()
+        val nuevaUri = mockk<Uri>(relaxed = true)
 
         repositorio.updateImage(nuevaUri)
 
@@ -36,15 +39,16 @@ class PerfilRepositorioTest {
     fun `updateImage debe mantener inmutabilidad del objeto PerfilDeUsuario`() = runTest {
         val repositorio = PerfilRepositorio()
         val perfilInicial = repositorio.getProfile()
-        val nuevaUri = Uri.parse("content://otra_imagen")
+
+        // CORRECCIÓN LÍNEA 39: Usar mockk en lugar de Uri.parse()
+        val nuevaUri = mockk<Uri>(relaxed = true)
 
         repositorio.updateImage(nuevaUri)
 
         val perfilActualizado = repositorio.getProfile()
 
-        // El objeto inicial no debe ser el mismo que el actualizado
-        assertNotEquals(perfilInicial, perfilActualizado)
+        // Usamos assertNotSame para verificar que la referencia del objeto ha cambiado
+        assertNotSame(perfilInicial, perfilActualizado)
         assertEquals(nuevaUri, perfilActualizado.imagenUri)
     }
 }
-
