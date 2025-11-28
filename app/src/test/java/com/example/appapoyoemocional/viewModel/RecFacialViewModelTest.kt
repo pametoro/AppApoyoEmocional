@@ -1,6 +1,6 @@
 package com.example.appapoyoemocional.viewModel
 
-import com.example.appapoyoemocional.data.modelo.RecFacialModel 
+import com.example.appapoyoemocional.data.modelo.RecFacialModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.Face
 import io.kotest.core.spec.style.BehaviorSpec

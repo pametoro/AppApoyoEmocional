@@ -5,11 +5,16 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.navigation.NavController
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.appapoyoemocional.viewModel.RecFacialViewModel
 import io.mockk.mockk
+import io.mockk.spyk
 import io.mockk.verify
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+
+@RunWith(AndroidJUnit4::class)
 
 class RecFacialScreenTest {
 
@@ -49,7 +54,7 @@ class RecFacialScreenTest {
     @Test
     fun `clic en Detectar rostro llama a processImage`() {
         val fakeNavController = mockk<NavController>(relaxed = true)
-        val viewModel = io.mockk.spyk(RecFacialViewModel(), recordPrivateCalls = true)
+        val viewModel = spyk(RecFacialViewModel(), recordPrivateCalls = true)
 
         composeRule.setContent {
             RecFacialScreen(navController = fakeNavController, viewModel = viewModel)
