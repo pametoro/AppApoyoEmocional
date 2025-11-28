@@ -85,6 +85,11 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+
+            isTestCoverageEnabled = true
+        }
+
     }
 }
 

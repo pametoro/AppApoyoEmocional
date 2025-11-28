@@ -5,9 +5,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.navigation.NavController
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.appapoyoemocional.data.modelo.Post
-import com.example.appapoyoemocional.repository.PostRepository
+import com.example.appapoyoemocional.repository.PostRepository // Asegúrate de que esta interfaz exista
 import com.example.appapoyoemocional.view.screen.PostScreen
 import com.example.appapoyoemocional.viewModel.PostViewModel
 import io.mockk.mockk
@@ -15,22 +14,23 @@ import io.mockk.verify
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import androidx.test.ext.junit.runners.AndroidJUnit4 // Mantenido para asegurar la ejecución
 
 
-@RunWith(AndroidJUnit4::class)
-open class FakePostRepository(private val posts: List<Post>) : PostRepository() {
+class FakePostRepository(private val posts: List<Post>) : PostRepository() {
     override suspend fun getPosts(): List<Post> {
         return posts
     }
 }
 
+@RunWith(AndroidJUnit4::class)
 class PostScreenTest {
 
     @get:Rule
     val composeRule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
-    fun `pantalla muestra titulo y posts`() {
+    fun `pantalla_muestra_titulo_y_posts`() {
         val fakeNavController = mockk<NavController>(relaxed = true)
 
         // 1. Definir los datos falsos
@@ -42,8 +42,7 @@ class PostScreenTest {
         // 2. Crear el Repositorio Falso con los datos
         val fakeRepository = FakePostRepository(postsFalsos)
 
-        // 3. Crear el ViewModel, inyectando el Repositorio Falso (¡CORRECCIÓN!)
-        // Asumiendo que PostViewModel ahora acepta un PostRepository en su constructor.
+        // 3. Crear el ViewModel, inyectando el Repositorio Falso
         val viewModel = PostViewModel(repository = fakeRepository)
 
         composeRule.setContent {
@@ -62,7 +61,7 @@ class PostScreenTest {
 
 
     @Test
-    fun `clic en boton retroceso llama a popBackStack`() {
+    fun `clic_en_boton_retroceso_llama_a_popBackStack`() { // Renombrado
         val fakeNavController = mockk<NavController>(relaxed = true)
 
         // Usamos un repositorio vacío para mantener la consistencia
@@ -75,11 +74,12 @@ class PostScreenTest {
         // Asumiendo que el botón de retroceso contiene el texto "<"
         composeRule.onNodeWithText("<").performClick()
 
-        verify { fakeNavController.popBackStack() }
+        // Verificamos que se llamó al popBackStack
+        verify(exactly = 1) { fakeNavController.popBackStack() }
     }
 
     @Test
-    fun `clic en boton perfil navega a perfil Invitado`() {
+    fun `clic_en_boton_perfil_navega_a_perfil_Invitado`() { // Renombrado
         val fakeNavController = mockk<NavController>(relaxed = true)
 
         // Usamos un repositorio vacío para mantener la consistencia
@@ -92,6 +92,13 @@ class PostScreenTest {
         // Asumiendo que el botón de perfil contiene el texto ">"
         composeRule.onNodeWithText(">").performClick()
 
-        verify { fakeNavController.navigate("perfil/Invitado") }
+        // Verificamos la navegación. Usamos 'any()' si la navegación usa NavOptions.
+        verify(exactly = 1) {
+            fakeNavController.navigate(
+                route = eq("perfil/Invitado"),
+                navOptions = any(),
+                navigatorExtras = any()
+            )
+        }
     }
 }
