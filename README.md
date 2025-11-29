@@ -114,7 +114,8 @@ Sigue estos pasos para compilar y ejecutar la aplicación en Android Studio:
   # Comandos útiles de Git:
   * # Ver commits por autor:
     bash
-    # Reemplaza "NombreDelAutor" con el nombre de usuario de Git del colaborador
+
+    Reemplaza "NombreDelAutor" con el nombre de usuario de Git del colaborador
     git log --author="NombreDelAutor" --oneline
 
     bash git shortlog -s -n ```
