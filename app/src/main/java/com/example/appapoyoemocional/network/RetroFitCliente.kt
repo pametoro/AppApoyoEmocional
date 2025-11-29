@@ -16,7 +16,7 @@ object RetroFitCliente {
             val originalRequest = chain.request()
             val newRequest = TokenManager.authToken?.let { token ->
                 // Si hay un token, se agrega el encabezado de Autorización (Bearer Token)
-                originalRequest.newBuilder()
+                originalRequest?.newBuilder()
                     .header("Authorization", "Bearer $token")
                     .build()
             } ?: originalRequest // Si no hay token, se usa la petición original
