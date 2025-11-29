@@ -1,0 +1,303 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PaginaInicioKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.appapoyoemocional.view</a>
+</div>
+
+<h1>Coverage Summary for Class: PaginaInicioKt (com.example.appapoyoemocional.view)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PaginaInicioKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PaginaInicioKt$PaginaInicio$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">PaginaInicioKt$PaginaInicio$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">PaginaInicioKt$PaginaInicio$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/32)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/42)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.appapoyoemocional.view
+&nbsp;
+&nbsp;import androidx.compose.foundation.Image
+&nbsp;import androidx.compose.foundation.background
+&nbsp;import androidx.compose.foundation.layout.Arrangement
+&nbsp;import androidx.compose.foundation.layout.Box
+&nbsp;import androidx.compose.foundation.layout.Column
+&nbsp;import androidx.compose.foundation.layout.Spacer
+&nbsp;import androidx.compose.foundation.layout.fillMaxSize
+&nbsp;import androidx.compose.foundation.layout.height
+&nbsp;import androidx.compose.foundation.layout.padding
+&nbsp;import androidx.compose.foundation.layout.size
+&nbsp;import androidx.compose.material3.Button
+&nbsp;import androidx.compose.material3.CenterAlignedTopAppBar
+&nbsp;import androidx.compose.material3.ExperimentalMaterial3Api
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.Scaffold
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.collectAsState
+&nbsp;import androidx.compose.runtime.getValue
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.graphics.Color
+&nbsp;import androidx.compose.ui.res.painterResource
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import androidx.compose.ui.unit.sp
+&nbsp;import androidx.navigation.NavController
+&nbsp;import com.example.appapoyoemocional.R
+&nbsp;
+&nbsp;import com.example.appapoyoemocional.viewModel.InicioViewModel
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;@OptIn(ExperimentalMaterial3Api::class)
+&nbsp;@Composable
+<b class="nc">&nbsp;fun PaginaInicio(navController: NavController, viewModel: InicioViewModel) {</b>
+<b class="nc">&nbsp;    val estado by viewModel.estado.collectAsState()</b>
+<b class="nc">&nbsp;    val fondoPastel = Color(0xFFE3F2FD) // Azul cielo pastel</b>
+&nbsp;
+<b class="nc">&nbsp;    Scaffold(</b>
+<b class="nc">&nbsp;        topBar = {</b>
+<b class="nc">&nbsp;            CenterAlignedTopAppBar(</b>
+<b class="nc">&nbsp;                title = {</b>
+<b class="nc">&nbsp;                    Text(estado.titulo)</b>
+&nbsp;                }
+&nbsp;            )
+&nbsp;        }
+<b class="nc">&nbsp;    ) { innerPadding -&gt;</b>
+<b class="nc">&nbsp;        Box(</b>
+<b class="nc">&nbsp;            modifier = Modifier</b>
+&nbsp;
+<b class="nc">&nbsp;                .fillMaxSize()</b>
+<b class="nc">&nbsp;                .background(fondoPastel)</b>
+<b class="nc">&nbsp;                .padding(innerPadding)</b>
+<b class="nc">&nbsp;                .padding(16.dp)</b>
+&nbsp;        ) {
+<b class="nc">&nbsp;            Column(</b>
+<b class="nc">&nbsp;                modifier = Modifier</b>
+<b class="nc">&nbsp;                    .padding(innerPadding)</b>
+<b class="nc">&nbsp;                    .padding(16.dp)</b>
+<b class="nc">&nbsp;                    .fillMaxSize(),</b>
+<b class="nc">&nbsp;                verticalArrangement = Arrangement.Center,</b>
+<b class="nc">&nbsp;                horizontalAlignment = Alignment.CenterHorizontally</b>
+&nbsp;            ) {
+<b class="nc">&nbsp;                Image(</b>
+<b class="nc">&nbsp;                    painter = painterResource(id = R.drawable.logo_apoyo_emocional),</b>
+<b class="nc">&nbsp;                    contentDescription = &quot;Logo de Apoyo Emocional&quot;,</b>
+<b class="nc">&nbsp;                    modifier = Modifier</b>
+<b class="nc">&nbsp;                        .size(280.dp)</b>
+<b class="nc">&nbsp;                        .padding(bottom = 8.dp)</b>
+&nbsp;                )
+&nbsp;
+<b class="nc">&nbsp;                Text(text = estado.descripcion, style = MaterialTheme.typography.bodyLarge,fontSize = 25.sp)</b>
+&nbsp;
+<b class="nc">&nbsp;                Spacer(modifier = Modifier.height(24.dp))</b>
+&nbsp;
+<b class="nc">&nbsp;                if (estado.mostrarBoton) {</b>
+<b class="nc">&nbsp;                    Button(onClick = {</b>
+<b class="nc">&nbsp;                        navController.navigate(&quot;FormularioScreen&quot;)</b>
+&nbsp;                    }) {
+&nbsp;                        Text(&quot;Registrate&quot;)
+&nbsp;                    }
+&nbsp;
+<b class="nc">&nbsp;                    Spacer(modifier = Modifier.height(16.dp))</b>
+&nbsp;
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;                    Button(</b>
+<b class="nc">&nbsp;                        onClick = {</b>
+&nbsp;                            // Aquí decides qué nombre pasar
+<b class="nc">&nbsp;                            val nombreSeguro = &quot;Invitado&quot; // o algún valor fijo</b>
+<b class="nc">&nbsp;                            navController.navigate(&quot;perfil/$nombreSeguro&quot;)</b>
+&nbsp;                        }
+&nbsp;                    ) {
+&nbsp;                        Text(&quot;Ir al Perfil&quot;)
+&nbsp;                    }
+&nbsp;
+&nbsp;                }
+<b class="nc">&nbsp;                Button(onClick = { navController.navigate(&quot;reconocimiento&quot;) }) {</b>
+&nbsp;                    Text(&quot;Iniciar reconocimiento facial&quot;)
+&nbsp;                }
+&nbsp;
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+<b class="nc">&nbsp;}</b>
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-28 22:25</div>
+</div>
+</body>
+</html>

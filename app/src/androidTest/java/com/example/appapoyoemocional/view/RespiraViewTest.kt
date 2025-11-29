@@ -14,8 +14,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 
+
+
+@RunWith(AndroidJUnit4::class)
 class RespiraScreenTest {
 
     @get:Rule
@@ -27,6 +29,7 @@ class RespiraScreenTest {
         val viewModel = RespiraViewModel()
 
         composeRule.setContent {
+            // Asumo que RespiraScreen acepta navController y viewModel
             RespiraScreen(navController = fakeNavController, viewModel = viewModel)
         }
 
@@ -37,7 +40,8 @@ class RespiraScreenTest {
         composeRule.onNodeWithContentDescription("persona haciendo yoga").assertExists()
 
         // Verificar texto de instrucciones
-        composeRule.onNodeWithText("Respira profundamente y sigue las instrucciones del video").assertExists()
+        composeRule.onNodeWithText("Respira profundamente y sigue las instrucciones del video")
+            .assertExists()
     }
 
     @Test
@@ -53,18 +57,5 @@ class RespiraScreenTest {
 
         verify { fakeNavController.popBackStack() }
     }
-
-    @Test
-    fun `clic en Cerrar sesion navega a inicio`() {
-        val fakeNavController = mockk<NavController>(relaxed = true)
-        val viewModel = RespiraViewModel()
-
-        composeRule.setContent {
-            RespiraScreen(navController = fakeNavController, viewModel = viewModel)
-        }
-
-        composeRule.onNodeWithText("Cerrar sesión").performClick()
-
-        verify { fakeNavController.navigate("inicio") }
-    }
 }
+

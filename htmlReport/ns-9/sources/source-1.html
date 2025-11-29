@@ -1,0 +1,144 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > EmocionViewModel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.appapoyoemocional.viewModel</a>
+</div>
+
+<h1>Coverage Summary for Class: EmocionViewModel (com.example.appapoyoemocional.viewModel)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EmocionViewModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.appapoyoemocional.viewModel
+&nbsp;
+&nbsp;import androidx.lifecycle.ViewModel
+&nbsp;import com.example.appapoyoemocional.data.modelo.EmocionUIState
+&nbsp;import kotlinx.coroutines.flow.MutableStateFlow
+&nbsp;import kotlinx.coroutines.flow.StateFlow
+&nbsp;
+<b class="fc">&nbsp;class EmocionViewModel : ViewModel() {</b>
+<b class="fc">&nbsp;    private val _estado = MutableStateFlow(EmocionUIState())</b>
+<b class="fc">&nbsp;    val estado: StateFlow&lt;EmocionUIState&gt; = _estado</b>
+&nbsp;
+&nbsp;    // ARREGLO CLAVE: La función debe esperar un parámetro de tipo String
+&nbsp;    fun actualizarNombre(nombre: String) {
+<b class="fc">&nbsp;        _estado.value = _estado.value.copy(nombreUsuario = nombre)</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    fun actualizarEmocion(texto: String) {
+<b class="fc">&nbsp;        _estado.value = _estado.value.copy(emocionTexto = texto)</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    fun guardarEmocion(): Boolean {
+<b class="fc">&nbsp;        val emocionValida = _estado.value.emocionTexto.isNotBlank()</b>
+<b class="fc">&nbsp;        if (emocionValida) {</b>
+&nbsp;            // Lógica para guardar la emoción (si se implementara la persistencia)
+&nbsp;        }
+<b class="fc">&nbsp;        return emocionValida</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-28 22:25</div>
+</div>
+</body>
+</html>

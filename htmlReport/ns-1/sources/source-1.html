@@ -1,0 +1,207 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > MainActivity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.appapoyoemocional</a>
+</div>
+
+<h1>Coverage Summary for Class: MainActivity (com.example.appapoyoemocional)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MainActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.appapoyoemocional
+&nbsp;
+&nbsp;import android.os.Bundle
+&nbsp;import androidx.activity.ComponentActivity
+&nbsp;import androidx.activity.compose.setContent
+&nbsp;import androidx.activity.enableEdgeToEdge
+&nbsp;import androidx.compose.runtime.collectAsState
+&nbsp;import androidx.lifecycle.viewmodel.compose.viewModel
+&nbsp;import androidx.navigation.compose.NavHost
+&nbsp;import androidx.navigation.compose.composable
+&nbsp;import androidx.navigation.compose.rememberNavController
+&nbsp;import com.example.appapoyoemocional.ui.theme.AppApoyoEmocionalTheme
+&nbsp;import com.example.appapoyoemocional.view.EmocionGuardadaScreen
+&nbsp;import com.example.appapoyoemocional.view.EmocionScreen
+&nbsp;import com.example.appapoyoemocional.view.FormularioScreen
+&nbsp;import com.example.appapoyoemocional.view.PaginaInicio
+&nbsp;import com.example.appapoyoemocional.view.RecFacialScreen
+&nbsp;import com.example.appapoyoemocional.view.RecursosScreen
+&nbsp;import com.example.appapoyoemocional.view.RespiraScreen
+&nbsp;import com.example.appapoyoemocional.view.ResumenScreen
+&nbsp;import com.example.appapoyoemocional.view.screen.PerfilScreen
+&nbsp;import com.example.appapoyoemocional.view.screen.PostScreen
+&nbsp;import com.example.appapoyoemocional.viewModel.EmocionViewModel
+&nbsp;import com.example.appapoyoemocional.viewModel.InicioViewModel
+&nbsp;import com.example.appapoyoemocional.viewModel.PerfilViewModel
+&nbsp;import com.example.appapoyoemocional.viewModel.RecFacialViewModel
+&nbsp;import com.example.appapoyoemocional.viewModel.RecursosViewModel
+&nbsp;import com.example.appapoyoemocional.viewModel.RespiraViewModel
+&nbsp;import com.example.appapoyoemocional.viewModel.UsuarioViewModel
+&nbsp;import java.net.URLDecoder
+&nbsp;import java.nio.charset.StandardCharsets
+&nbsp;
+<b class="nc">&nbsp;class MainActivity : ComponentActivity() {</b>
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState)</b>
+<b class="nc">&nbsp;        enableEdgeToEdge()</b>
+<b class="nc">&nbsp;        setContent {</b>
+&nbsp;            AppApoyoEmocionalTheme {
+&nbsp;                val postViewModel: com.example.appapoyoemocional.viewModel.PostViewModel = viewModel()
+&nbsp;                val navController = rememberNavController()
+&nbsp;                val usuarioViewModel: UsuarioViewModel = viewModel()
+&nbsp;                val perfilViewModel: PerfilViewModel = viewModel()
+&nbsp;                val inicioViewModel: InicioViewModel = viewModel()
+&nbsp;                val emocionViewModel: EmocionViewModel = viewModel()
+&nbsp;                val respiraViewModel: RespiraViewModel = viewModel()
+&nbsp;                val recursosViewModel: RecursosViewModel = viewModel()
+&nbsp;                val recFacialViewModel: RecFacialViewModel = viewModel()
+&nbsp;
+&nbsp;                NavHost(navController = navController, startDestination = &quot;inicio&quot;) {
+&nbsp;
+&nbsp;                    composable(&quot;inicio&quot;) {
+&nbsp;                        PaginaInicio(navController, inicioViewModel)
+&nbsp;                    }
+&nbsp;                    composable(&quot;FormularioScreen&quot;) {
+&nbsp;                        FormularioScreen(navController, usuarioViewModel)
+&nbsp;                    }
+&nbsp;
+&nbsp;                    composable(&quot;resumen&quot;) {
+&nbsp;                        val nombreUsuario = usuarioViewModel.estado.collectAsState().value.nombre
+&nbsp;                        ResumenScreen(navController, usuarioViewModel, nombreUsuario)
+&nbsp;                    }
+&nbsp;
+&nbsp;                    composable(&quot;perfil/{nombreUsuario}&quot;) { backStackEntry -&gt;
+&nbsp;                        val nombreUsuario =
+&nbsp;                            backStackEntry.arguments?.getString(&quot;nombreUsuario&quot;) ?: &quot;Invitado&quot;
+&nbsp;                        PerfilScreen(navController, perfilViewModel, nombreUsuario)
+&nbsp;                    }
+&nbsp;
+&nbsp;                    composable(&quot;posts&quot;) {
+&nbsp;                        PostScreen(viewModel = postViewModel, navController = navController)
+&nbsp;                    }
+&nbsp;
+&nbsp;                    composable(&quot;reconocimiento&quot;) {
+&nbsp;                        RecFacialScreen(
+&nbsp;                            navController = navController,
+&nbsp;                            viewModel = recFacialViewModel
+&nbsp;                        )
+&nbsp;                    }
+&nbsp;                    composable(&quot;emocion/{nombreUsuario}&quot;) { backStackEntry -&gt;
+&nbsp;                        val nombre =
+&nbsp;                            backStackEntry.arguments?.getString(&quot;nombreUsuario&quot;) ?: &quot;Invitado&quot;
+&nbsp;                        EmocionScreen(navController, emocionViewModel, nombre)
+&nbsp;                    }
+&nbsp;                    composable(&quot;emocionGuardada/{nombreUsuario}/{emocionTexto}&quot;) { backStackEntry -&gt;
+&nbsp;                        val nombre = backStackEntry.arguments?.getString(&quot;nombreUsuario&quot;)
+&nbsp;                            ?: &quot;Usuario Desconocido&quot;
+&nbsp;                        val emocion = backStackEntry.arguments?.getString(&quot;emocionTexto&quot;)
+&nbsp;                            ?: &quot;No se registró emoción.&quot;
+&nbsp;                        val emocionDecoded =
+&nbsp;                            URLDecoder.decode(emocion, StandardCharsets.UTF_8.toString())
+&nbsp;                        EmocionGuardadaScreen(navController, nombre, emocionDecoded)
+&nbsp;                    }
+&nbsp;                    composable(&quot;recursos&quot;) {
+&nbsp;                        RecursosScreen(navController, recursosViewModel)
+&nbsp;                    }
+&nbsp;                    composable(&quot;Respira&quot;) {
+&nbsp;                        RespiraScreen(navController = navController, viewModel = respiraViewModel)
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-28 22:25</div>
+</div>
+</body>
+</html>
