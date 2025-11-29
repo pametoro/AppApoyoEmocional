@@ -15,10 +15,11 @@ con el de mejorar el bienestar psicológico de jóvenes y adultos.
  
 # Breve descripción técnica:
 
-Este proyecto es una aplicación nativa de Android para el bienestar emocional, desarrollada 
-completamente con Kotlin y Jetpack Compose para una interfaz de usuario moderna y declarativa.
+Esta aplicación móvil, desarrollada en Kotlin con Jetpack Compose, ofrece un conjunto de herramientas y recursos para ayudar a los usuarios a gestionar su bienestar emocional. Permite el registro de usuarios, el reconocimiento facial a través de la cámara, ejercicios de respiración, y una comunidad para compartir estados de ánimo. 
 
-Las funcionalidades principales incluyen:
+# Funcionalidades:
+La aplicación cuenta con las siguientes características principales:
+(AGREGAR --- MODIFICAR)
 
 * Registro de usuario: Un formulario de registro para nuevos usuarios.
 * Perfil personalizable: Permite a los usuarios establecer una foto de perfil, ya sea
