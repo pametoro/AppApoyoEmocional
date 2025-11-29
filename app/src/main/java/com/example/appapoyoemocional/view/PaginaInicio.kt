@@ -77,24 +77,23 @@ fun PaginaInicio(navController: NavController, viewModel: InicioViewModel) {
 
                 if (estado.mostrarBoton) {
                     Button(onClick = {
-                        navController.navigate("FormularioScreen")
+                        navController.navigate("LoginScreen")
                     }) {
-                        Text("Registrate")
+                        Text("Iniciar Sesión / Registrarse")
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
 
-
-                    Button(
-                        onClick = {
-                            // Aquí decides qué nombre pasar
-                            val nombreSeguro = "Invitado" // o algún valor fijo
-                            navController.navigate("perfil/$nombreSeguro")
-                        }
-                    ) {
-                        Text("Ir al Perfil")
-                    }
+                    // Button(
+                    // onClick = {
+                    // Aquí decides qué nombre pasar
+                    // val nombreSeguro = "Invitado" // o algún valor fijo
+                    // navController.navigate("perfil/$nombreSeguro")
+                    // }
+                    //       onClick = { navController.navigate("perfil") }) {
+                    // Text("Ir al Perfil")
+                    // }
 
                 }
                 Button(onClick = { navController.navigate("reconocimiento") }) {

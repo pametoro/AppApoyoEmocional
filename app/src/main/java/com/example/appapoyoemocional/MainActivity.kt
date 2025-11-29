@@ -10,6 +10,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appapoyoemocional.ui.theme.AppApoyoEmocionalTheme
+// --- ¡IMPORTANTE! AÑADE ESTA IMPORTACIÓN ---
+import com.example.appapoyoemocional.view.LoginScreen
+// -----------------------------------------
 import com.example.appapoyoemocional.view.EmocionGuardadaScreen
 import com.example.appapoyoemocional.view.EmocionScreen
 import com.example.appapoyoemocional.view.FormularioScreen
@@ -20,6 +23,9 @@ import com.example.appapoyoemocional.view.RespiraScreen
 import com.example.appapoyoemocional.view.ResumenScreen
 import com.example.appapoyoemocional.view.screen.PerfilScreen
 import com.example.appapoyoemocional.view.screen.PostScreen
+// --- ¡IMPORTANTE! AÑADE ESTA IMPORTACIÓN ---
+import com.example.appapoyoemocional.viewModel.AuthViewModel
+// -----------------------------------------
 import com.example.appapoyoemocional.viewModel.EmocionViewModel
 import com.example.appapoyoemocional.viewModel.InicioViewModel
 import com.example.appapoyoemocional.viewModel.PerfilViewModel
@@ -45,12 +51,25 @@ class MainActivity : ComponentActivity() {
                 val respiraViewModel: RespiraViewModel = viewModel()
                 val recursosViewModel: RecursosViewModel = viewModel()
                 val recFacialViewModel: RecFacialViewModel = viewModel()
+                // --- ¡IMPORTANTE! AÑADE LA CREACIÓN DEL VIEWMODEL ---
+                val authViewModel: AuthViewModel = viewModel()
+                // ---------------------------------------------------
 
+                // MODIFICACIÓN: La ruta inicial ahora es "inicio"
                 NavHost(navController = navController, startDestination = "inicio") {
 
                     composable("inicio") {
+                        // En la PaginaInicio, cuando se presiona el botón, se navega a "LoginScreen"
                         PaginaInicio(navController, inicioViewModel)
                     }
+
+                    // --- MODIFICACIÓN 1: AÑADIR LA RUTA PARA LOGINSCREEN ---
+                    composable("LoginScreen") {
+                        // Pasamos el navController y el authViewModel que acabamos de crear
+                        LoginScreen(navController = navController, viewModel = authViewModel)
+                    }
+                    // -----------------------------------------------------
+
                     composable("FormularioScreen") {
                         FormularioScreen(navController, usuarioViewModel)
                     }
@@ -66,9 +85,13 @@ class MainActivity : ComponentActivity() {
                         PerfilScreen(navController, perfilViewModel, nombreUsuario)
                     }
 
-                    composable("posts") {
+                    // --- MODIFICACIÓN 2: USAR "posts" COMO LA PANTALLA PRINCIPAL ---
+                    // En LoginScreen, la navegación exitosa debe apuntar a esta ruta.
+                    // Renombraré "posts" a "PaginaPrincipal" para que coincida con el código anterior.
+                    composable("PaginaPrincipal") {
                         PostScreen(viewModel = postViewModel, navController = navController)
                     }
+                    // --------------------------------------------------------------
 
                     composable("reconocimiento") {
                         RecFacialScreen(
