@@ -102,7 +102,7 @@ Sigue estos pasos para compilar y ejecutar la aplicación en Android Studio:
 * Almacén de claves(.jks): El archivo de claves Java (.jks) keystore/upload-kestore.jks.
    * Credenciales: Las credenciales (alias y contraseña) para acceder a este almacén se gestionan de forma segura y no están incluidas en el repositoriio. Se pueden encontar en el archivo keystore.properties, que está listado en .gitignore para no ser subido al control de versiones.
 
-* # Código fuente:
+* # Código fuente:(EN MODIFICACIÓN)
   
   *  Aplicación móvil: El código fuente completo de la aplicación Android se encuentra en la raíz de este repositorio.
   *  Microservicios: El código fuente de los microservicios del backend se encuentra en un repositorio separado.
