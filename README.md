@@ -23,9 +23,15 @@ La aplicación cuenta con las siguientes características principales:
 * Registro de nuevas cuentas de usuario (nombre, correo, contraseña).
 * Inicio de sesión seguro mediante correo y contraseña.
 * Manejo de sesión a través de tokens JWT.
+* # Reconocimiento facial de emociones:
+* Utiliza la cámara del disposito para detectar el rostro del usuario.
+* Analiza la expresión facial para identificar y mostrar la emoción predominante.
 * # Registro y seguimiento de emociones:
 * Permite al usuario registrar manualmente su estado emocional actual.
 * Guarda un historial de las emociones registradas, asociado al perfil del usuario.
+* # Muro de publicaciones:
+* Una sección donde los usuarios pueden ver publicaciones de otros miembros (posts).
+* Funciona como un "muro".
 * # Recursos de bienestar:
 * Módulo de respiración: Guía al usuario a través de ejercicios de respiración para calmar la ansiedad y el estrés.
 * Sección de recursos: Ofrece información y herramientas adicionales para el manejo emocional.
