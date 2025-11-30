@@ -1,5 +1,10 @@
 # App Apoyo Emocional
 
+# Integrantes del grupo:
+* Ma. Alejandra Marambio
+* Felipe Sanchez
+* Pamela Toro
+
 # Objetivo del proyecto:
 Brindar acompañamiento emocional accesible, segura y personalizado a través de una aplicación móvil, 
 con el de mejorar el bienestar psicológico de jóvenes y adultos.
@@ -7,11 +12,6 @@ con el de mejorar el bienestar psicológico de jóvenes y adultos.
 * Fomentar el autocuidado emocional mediante herramientas interactivas y educativas.
 * Ofrecer un espacio seguro y privado para el registro de emociones.
 * Educar sobre salud mental con contenido validado, accesible y amigable.
-
-# Integrantes del grupo:
-* Ma. Alejandra Marambio
-* Felipe Sanchez
-* Pamela Toro
  
 # Breve descripción técnica:
 
