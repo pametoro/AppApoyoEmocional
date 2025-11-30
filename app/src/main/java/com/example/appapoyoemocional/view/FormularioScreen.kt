@@ -17,6 +17,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -37,6 +38,14 @@ fun FormularioScreen(
 ) {
     val estado by viewModel.estado.collectAsState()
     val fondoPastel = Color(0xFFE3F2FD)
+    val LightColorScheme = lightColorScheme(
+        primary = Color(0xFF03A9F4),
+        onPrimary = Color.White,
+        background = Color(0xFFE3F2FD),
+        onBackground = Color(0xFF212121), // texto oscuro sobre fondo claro
+        surface = Color.White,
+        onSurface = Color.Black           // texto en campos y superficies
+    )
 
     Scaffold(
         topBar = {
@@ -71,7 +80,8 @@ fun FormularioScreen(
                         Text(it, color = MaterialTheme.colorScheme.error)
                     }
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+
             )
 
             OutlinedTextField(
@@ -108,7 +118,8 @@ fun FormularioScreen(
                 isError = estado.errores.direccion != null,
                 supportingText = {
                     estado.errores.direccion?.let {
-                        Text(it, color = MaterialTheme.colorScheme.error)
+                        Text(it,
+                            color = MaterialTheme.colorScheme.error)
                     }
                 },
                 modifier = Modifier.fillMaxWidth()
@@ -140,8 +151,6 @@ fun FormularioScreen(
 
     }
 }
-
-
 private fun UsuarioViewModel.registrarUsuario(function: () -> Unit) {
     TODO("Not yet implemented")
 }

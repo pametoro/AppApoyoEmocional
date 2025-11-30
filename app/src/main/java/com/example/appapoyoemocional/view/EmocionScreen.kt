@@ -87,7 +87,6 @@ fun EmocionScreen(navController: NavController, viewModel: EmocionViewModel, nom
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.Top
             ) {
-                // Aquí usamos la descripción del estado (si es necesario)
                 Text(
                     text = estado.descripcion,
                     color = Color.DarkGray,
@@ -120,7 +119,7 @@ fun EmocionScreen(navController: NavController, viewModel: EmocionViewModel, nom
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(200.dp),
-                    textStyle = LocalTextStyle.current.copy(color = Color.DarkGray)
+                    textStyle = LocalTextStyle.current.copy(color = Color.Black, fontSize = 18.sp)
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))

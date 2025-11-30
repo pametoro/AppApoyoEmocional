@@ -27,16 +27,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.appapoyoemocional.R
-
 import com.example.appapoyoemocional.viewModel.InicioViewModel
-
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PaginaInicio(navController: NavController, viewModel: InicioViewModel) {
     val estado by viewModel.estado.collectAsState()
     val fondoPastel = Color(0xFFE3F2FD) // Azul cielo pastel
+
 
     Scaffold(
         topBar = {
@@ -60,18 +58,25 @@ fun PaginaInicio(navController: NavController, viewModel: InicioViewModel) {
                     .padding(innerPadding)
                     .padding(16.dp)
                     .fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.logo_apoyo_emocional),
-                    contentDescription = "Logo de Apoyo Emocional",
-                    modifier = Modifier
-                        .size(280.dp)
-                        .padding(bottom = 8.dp)
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Image(
+                        painter = painterResource(id = R.drawable.logo_apoyo_emocional),
+                        contentDescription = "Logo de Apoyo Emocional",
+                        modifier = Modifier
+                            .size(220.dp)
+                            .padding(bottom = 16.dp)
+                    )
+                }
 
-                Text(text = estado.descripcion, style = MaterialTheme.typography.bodyLarge,fontSize = 25.sp)
+                Text(
+                    text = estado.descripcion,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontSize = 25.sp,
+                    color = Color(0xFF006064)
+                )
 
                 Spacer(modifier = Modifier.height(24.dp))
 
@@ -84,8 +89,6 @@ fun PaginaInicio(navController: NavController, viewModel: InicioViewModel) {
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-
-
                     Button(
                         onClick = {
                             val nombreSeguro = "Invitado" // o algún valor fijo
@@ -94,12 +97,13 @@ fun PaginaInicio(navController: NavController, viewModel: InicioViewModel) {
                     ) {
                         Text("Ir al Perfil")
                     }
-                }
-                Button(onClick = { navController.navigate("reconocimiento") }) {
-                    Text("Iniciar reconocimiento facial")
-                }
+                    Button(onClick = { navController.navigate("reconocimiento") }) {
+                        Text("Iniciar reconocimiento facial")
 
+                    }
+                }
             }
         }
     }
 }
+

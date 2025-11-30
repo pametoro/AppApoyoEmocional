@@ -1,65 +1,32 @@
 package com.example.appapoyoemocional.viewModel
 
-import android.graphics.Bitmap
-import com.google.mlkit.vision.face.Face
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.appapoyoemocional.data.modelo.RecFacialModel
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.face.FaceDetection
-import com.google.mlkit.vision.face.FaceDetectorOptions
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
-class RecFacialViewModel  : ViewModel() {
-    private val _faces = MutableStateFlow<List<Face>>(emptyList())
-    val faces: StateFlow<List<Face>> = _faces
+class RecFacialViewModel : ViewModel() {
+    // Estado para la emoción detectada
+    private val _emocion = MutableStateFlow("Esperando rostro...")
+    val emocion: StateFlow<String> = _emocion
+
+    // Simulación de estados para que la pantalla compile
+    private val _faces = MutableStateFlow(emptyList<Any>())
+    val faces: StateFlow<List<Any>> = _faces
 
     private val _error = MutableStateFlow<String?>(null)
     val error: StateFlow<String?> = _error
 
-    fun processImage(image: InputImage) {
-        RecFacialModel.detectFaces(
-            image,
-            onResult = { detectedFaces -> _faces.value = detectedFaces },
-            onError = { e -> _error.value = e.message }
-        )
+    /**
+     * Función que el CameraFaceDetector usará para actualizar la emoción.
+     */
+    fun updateDetectedEmotion(emotion: String) {
+        _emocion.value = emotion
     }
 
-    private val _emocion = MutableStateFlow("Desconocida")
-    val emocion: StateFlow<String> = _emocion
-
-    private val options = FaceDetectorOptions.Builder()
-        .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST)
-        .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
-        .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
-        .build()
-
-    private val detector = FaceDetection.getClient(options)
-
-    fun procesarImagen(bitmap: Bitmap) {
-        val image = InputImage.fromBitmap(bitmap, 0)
-
-        viewModelScope.launch {
-            detector.process(image)
-                .addOnSuccessListener { faces ->
-                    if (faces.isNotEmpty()) {
-                        val face = faces[0]
-                        val smilingProb = face.smilingProbability ?: -1f
-
-                        _emocion.value = if (smilingProb > 0.7f) {
-                            "Feliz"
-                        } else {
-                            "Serio"
-                        }
-                    } else {
-                        _emocion.value = "No detectado"
-                    }
-                }
-                .addOnFailureListener {
-                    _emocion.value = "Error"
-                }
-        }
+    // El método processImage ya no es necesario si usamos la cámara en vivo, pero se mantiene si lo necesitas para pruebas
+    fun processImage(image: Any) {
+        // Lógica de procesamiento de imagen estática (ahora ignorada)
     }
 }

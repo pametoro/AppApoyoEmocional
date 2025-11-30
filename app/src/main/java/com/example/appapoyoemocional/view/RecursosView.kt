@@ -64,6 +64,7 @@ fun RecursosScreen(navController: NavController, viewModel: RecursosViewModel) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(bottom = 48.dp)
                     .padding(16.dp),
                 contentAlignment = Alignment.Center
             ) {
@@ -93,7 +94,8 @@ fun RecursosScreen(navController: NavController, viewModel: RecursosViewModel) {
                     Text(
                         text = listaConsejos.value[index].texto,
                         modifier = Modifier.padding(20.dp),
-                        style = MaterialTheme.typography.bodyLarge
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = Color.Black
                     )
                 }
             }
@@ -103,7 +105,8 @@ fun RecursosScreen(navController: NavController, viewModel: RecursosViewModel) {
 
                 Text(
                     text = "Si en este momento sientes que la angustia te supera, regálate un respiro mira el video y acompáñate en calma.",
-                    style = MaterialTheme.typography.bodyLarge.copy(fontSize = 24.sp)
+                    style = MaterialTheme.typography.bodyLarge.copy(fontSize = 24.sp),
+                    color = Color.Black
                 )
 
                 Spacer(modifier = Modifier.height(50.dp))
