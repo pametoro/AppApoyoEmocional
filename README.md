@@ -82,7 +82,7 @@ Sigue estos pasos para compilar y ejecutar la aplicación en Android Studio:
   * Selecciona File > Open y navega hasta la carpeta del proyecto clonado.
   * Espera a que Gradle sincronice todas las dependencias.
 
-* # 3. Configurar el Backend:
+* # 3. Configurar el Backend:(EN MODIFICACIÓN)
   
   * Asegúrate de que el servidor del backend (los microservicios) esté en ejecución.
   * Abre el archivo app/src/main/java/com/example/appapoyoemocional/network/RetroFitCliente.kt.
