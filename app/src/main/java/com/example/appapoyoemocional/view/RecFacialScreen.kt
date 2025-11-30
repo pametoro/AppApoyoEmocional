@@ -3,15 +3,9 @@ package com.example.appapoyoemocional.view
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,6 +28,7 @@ import com.google.mlkit.vision.common.InputImage
 fun RecFacialScreen(navController: NavController, viewModel: RecFacialViewModel) {
     val faces by viewModel.faces.collectAsState()
     val error by viewModel.error.collectAsState()
+    val emocion by viewModel.emocion.collectAsState()
     val context = LocalContext.current
 
     Column(
@@ -43,7 +38,7 @@ fun RecFacialScreen(navController: NavController, viewModel: RecFacialViewModel)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 🔙 Botón de retroceso
+        // Botón de retroceso
         Button(
             onClick = { navController.popBackStack() },
             modifier = Modifier.align(Alignment.Start)
@@ -70,6 +65,7 @@ fun RecFacialScreen(navController: NavController, viewModel: RecFacialViewModel)
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //  Círculo guía
         Box(
             modifier = Modifier
                 .size(250.dp)
@@ -86,15 +82,49 @@ fun RecFacialScreen(navController: NavController, viewModel: RecFacialViewModel)
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Botón para procesar imagen
         Button(
             onClick = {
-                val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.logo_apoyo_emocional)
+                val bitmap = BitmapFactory.decodeResource(
+                    context.resources,
+                    R.drawable.logo_apoyo_emocional
+                )
                 val image = InputImage.fromBitmap(bitmap, 0)
                 viewModel.processImage(image)
-            },
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            }
         ) {
             Text("Detectar rostro")
         }
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        // Resultado de emoción
+        Text(
+            text = "Emoción detectada: $emocion",
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color(0xFF006064)
+        )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // Navegación según emoción
+        Button(onClick = {
+            when (emocion) {
+                "Feliz" -> navController.navigate("recursos")
+                "Serio" -> navController.navigate("Respira")
+                else -> {}
+            }
+        }) {
+            Text("Continuar")
+        }
+        Button(
+            onClick = {
+                navController.navigate("perfil/Invitado")
+            },
+            modifier = Modifier.padding(top = 16.dp)
+        ) {
+            Text("Omitir")
+        }
     }
 }
+

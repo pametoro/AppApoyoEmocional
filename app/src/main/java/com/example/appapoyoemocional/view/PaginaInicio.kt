@@ -88,14 +88,12 @@ fun PaginaInicio(navController: NavController, viewModel: InicioViewModel) {
 
                     Button(
                         onClick = {
-                            // Aquí decides qué nombre pasar
                             val nombreSeguro = "Invitado" // o algún valor fijo
                             navController.navigate("perfil/$nombreSeguro")
                         }
                     ) {
                         Text("Ir al Perfil")
                     }
-
                 }
                 Button(onClick = { navController.navigate("reconocimiento") }) {
                     Text("Iniciar reconocimiento facial")
