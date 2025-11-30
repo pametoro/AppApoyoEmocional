@@ -1,17 +1,27 @@
 package com.example.appapoyoemocional.network
 
-import com.example.appapoyoemocional.data.modelo.PerfilDeUsuario
-import com.example.appapoyoemocional.data.modelo.UsuarioUIState
-import retrofit2.Response
+// --- CORRECCIÓN 1: Añadir TODAS las importaciones necesarias ---
+import com.example.appapoyoemocional.data.UserCreate
+import com.example.appapoyoemocional.data.UserResponse
+import retrofit2.Response // <-- Importante: para envolver la respuesta
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.GET
+// ----------------------------------------------------------------
 
 interface UsuarioService {
-    @POST("/api/usuarios/registrar")
-    suspend fun registrarUsuario(@Body usuario: UsuarioUIState): Response<Unit>
 
-    @GET("/api/usuarios/{id}")
-    suspend fun obtenerPerfilDeUsuario(@Path("id") userId: Int): Response<PerfilDeUsuario>
+    /**
+     * Endpoint para registrar un nuevo usuario.
+     * Envía los datos del usuario y espera una respuesta con los datos del usuario creado.
+     */
+    @POST("usuarios") // <-- CORRECCIÓN 2: La ruta debe coincidir con tu backend (ej. "usuarios" o "api/users")
+    suspend fun registrarUsuario(@Body usuario: UserCreate): Response<UserResponse>
+
+    /**
+     * Endpoint para obtener el perfil de un usuario por su ID.
+     */
+    @GET("usuarios/{id}") // <-- CORRECCIÓN 3: La ruta debe coincidir con tu backend
+    suspend fun obtenerPerfilDeUsuario(@Path("id") userId: Int): Response<UserResponse> // <-- CORRECCIÓN 4: Usamos UserResponse
 }

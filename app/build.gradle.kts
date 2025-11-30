@@ -94,64 +94,35 @@ android {
 }
 
 dependencies {
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+    // --- LIBRERÍAS DE RED (Retrofit y OkHttp) ---
+    // Retrofit (versión 2.11.0 que ya tienes)
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    // OkHttp (Necesario para el Interceptor de autenticación)
+    // Usa la versión que sea compatible con tu Retrofit, 4.11.0 es una opción sólida.
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    // Gson (Si la usas directamente)
+    implementation("com.google.code.gson:gson:2.10.1")
 
 
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.6.2")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.2")
-
-
-    // jetpack compose y material 3
+    // --- JETPACK COMPOSE Y MATERIAL 3 ---
     implementation("androidx.activity:activity-compose:1.12.0")
     implementation("androidx.compose.material3:material3:1.2.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
-    //retrofit y gson coverter
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-    //corrutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
-
-    implementation("io.coil-kt:coil-compose:2.6.0")//
-
     implementation("androidx.compose.material:material-icons-extended:1.6.0")
 
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation(libs.androidx.ui.test.junit4)
+    // Coil (Imágenes)
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
-    //kotest
-    testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
-    testImplementation("io.kotest:kotest-assertions-core:5.8.0")
-    //junit5
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
-    testImplementation("junit:junit:4.13.2")//
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
-    //mockk
-    testImplementation("io.mockk:mockk:1.13.10")
+    // Navegación
+    implementation("androidx.navigation:navigation-testing:2.7.5")
 
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
-    //compose ui test
-
-    androidTestImplementation("androidx.navigation:navigation-testing:2.7.5")
-
-// MockK para Android Tests (para mockear NavController y ViewModel)
-    androidTestImplementation("io.mockk:mockk-android:1.13.10")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.6.2")
-
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.2")
-
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
-
-
-
+    // Dependencias del archivo libs.versions.toml (Si usas el DSL de versiones)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -167,16 +138,36 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.vision.common)
     implementation(libs.play.services.mlkit.face.detection)
+
+    // --- PRUEBAS (Se mantienen las que tienes) ---
+    // JUnit
     testImplementation(libs.junit)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+
+    // Kotest, MockK y Coroutines Test
+    testImplementation("io.kotest:kotest-runner-junit5:5.8.0")
+    testImplementation("io.kotest:kotest-assertions-core:5.8.0")
+    testImplementation("io.mockk:mockk:1.13.10")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1")
+
+    // Android Tests
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+    androidTestImplementation("io.mockk:mockk-android:1.13.10") // MockK para Android Tests
+
+    // Debug
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-
-    tasks.withType<Test>().configureEach {
-        useJUnitPlatform()
-    }
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.2")
 }
 
