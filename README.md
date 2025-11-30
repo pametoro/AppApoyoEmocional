@@ -1,4 +1,4 @@
-# Apoyo Emocional
+# App Apoyo Emocional
 
 # Objetivo del proyecto:
 Brindar acompañamiento emocional accesible, segura y personalizado a través de una aplicación móvil, 
