@@ -80,7 +80,7 @@ fun RespiraScreen(navController: NavController, viewModel: RespiraViewModel) {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            val videoUri = Uri.parse(estado.url)
+            val videoUri = Uri.parse(estado.url) // estado.url es String, ahora videoUri es Uri (CORRECTO)
 
             VideoPlayer(
                 videoUri = videoUri,
@@ -88,6 +88,7 @@ fun RespiraScreen(navController: NavController, viewModel: RespiraViewModel) {
                     .fillMaxWidth()
                     .height(220.dp)
             )
+
             Spacer(modifier = Modifier.height(32.dp))
 
             Button(onClick = {

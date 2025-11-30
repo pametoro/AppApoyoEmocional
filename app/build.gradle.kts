@@ -4,8 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
-
-// 2. Bloque principal de Android
 android {
 
     // --- CONFIGURACIÓN BÁSICA ---
@@ -94,6 +92,8 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.androidx.compose.animation.core)
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

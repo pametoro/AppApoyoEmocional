@@ -9,7 +9,8 @@ class RespiraViewModel : ViewModel() {
     private val _estado = mutableStateOf(
         VideoRespiracion(
             titulo = "Ejercicio de respiración",
-            url = "https://www.youtube.com/watch?v=adpR2UQTElk"
+
+            url = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
         )
     )
     val estado: State<VideoRespiracion> = _estado
