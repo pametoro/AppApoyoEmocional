@@ -44,26 +44,68 @@ La aplicación se comunica con un backend a través de una API REST para gestion
  # Endpoints propios (API del proyecto): (EN MODIFICACIÓN)
 
 La URL base de la API se configura en RetroFitCliente.kt
+1. UserController - /api/users
+   * POST /api/users
+     - Descripción: Registra un nuevo usuario.
+     - Request Body: { "nombre": "Juan", "correo": "j@mail.com", "clave": "pass123" }
+     - Response Body: User (objeto creado)
 
- * POST /auth/login
-   * Descripción: Autentica a un usuario y devuelve un token JWT.
-   * Request Body: { "correo": "user@example.com", "clave": "password123" }
-   * Response Body: { "token": "ey..." }
+ * GET /api/users
+   - Descripción: Lista todos los usuarios registrados (puede requerir autorización según tu lógica).
+   - Headers: Authorization: Bearer <token> (opcional)
+   - Response Body: [ User, ... ]
      
-  * POST /usuarios/
-    * Descripción: Registra un nuevo usuario en el sistema.
-    * Request Body: { "nombre": "...", "correo": "...", "clave": "..." }
-      
-  * GET /posts/
-    * Descripción: Obtiene el listado de publicaciones para el muro de la comunidad. Requiere autenticación.
-    * Headers: Authorization: Bearer <token>
-    
-  * GET /usuarios/{nombreUsuario}
-    * Descripción: Obtiene la información del perfil de un usuario específico.
-      
-  * POST /emociones/
-    * Descripción: Guarda un registro de emoción para el usuario autenticado.
+2. EmotionController /api/emotions
+   * POST /api/emotions
+   - Descripción: Guarda un registro de emoción para el usuario autenticado.
+   - Headers: Authorization: Bearer <token>
+   - Request Body: { "tipo": "tristeza|alegria|ansiedad", "intensidad": 1..10, "nota": "opcional" }
+   - Response Body: Emocion (id, tipo, intensidad, fecha, usuario)
+
+  * GET /api/emotions
+    - Descripción: Obtiene el historial de emociones del usuario autenticado (paginado opcional).
+    - Headers: Authorization: Bearer <token>
+    - Query params (opcionales): page, size, desde, hasta
+    - Response Body: [ Emocion, ... ]
+
+  * GET /api/emotions/{id}
+    - Descripción: Obtiene un registro de emoción específico (debe pertenecer al usuario o permiso admin).
+    - Headers: Authorization: Bearer <token>
+    - Response Body: Emocion
+
+  * DELETE /api/emotions/{id} (opcional)
+    - Descripción: Elimina un registro de emoción (propietario o admin).
+    - Headers: Authorization: Bearer <token>
+    - Response: 200/204
  
+3. ResourceController - /api/posts
+  * GET /api/posts
+    - Descripción: Obtiene el listado de publicaciones para el muro de la comunidad. Requiere autenticación según tu diseño.
+    - Headers: Authorization: Bearer <token> (si aplica)
+    - Query params (opcionales): page, size, filtro
+    - Response Body: [ PostItem { id, titulo, contenido, autor, fecha }, ... ]
+
+  * POST /api/posts
+    - Descripción: Crea una nueva publicación (usuario autenticado).
+    - Headers: Authorization: Bearer <token>
+    - Request Body: { "titulo": "...", "contenido": "...", "adjuntos": [...] }
+    - Response Body: PostItem (objeto creado)
+
+  * GET /api/posts/{id}
+    - Descripción: Obtiene una publicación por id.
+    - Response Body: PostItem
+
+  * PUT /api/posts/{id}
+    - Descripción: Actualiza una publicación (propietario/admin).
+    - Headers: Authorization: Bearer <token>
+    - Request Body: { "titulo": "...", "contenido": "..." }
+    - Response Body: PostItem actualizado
+
+  * DELETE /api/posts/{id}
+    - Descripción: Elimina una publicación (propietario/admin).
+    - Headers: Authorization: Bearer <token>
+    - Response: 200/204
+   
  # Endpoints externos:
  
  * Modelo de reconocimiento facial: La aplicación parece utilizar un modelo de machine learning para el analisis de emociones. Este modelo se ejecuta localmente en el dispositivo y no requiere un endpoint externo.
