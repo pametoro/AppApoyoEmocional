@@ -41,7 +41,7 @@ La aplicación cuenta con las siguientes características principales:
 # Endpoints usados:
 La aplicación se comunica con un backend a través de una API REST para gestionar la autenticación, los usuarios y las publicaciones.
 
- # Endpoints propios (API del proyecto): (EN MODIFICACIÓN)
+ # Endpoints propios (API del proyecto): 
 
 La URL base de la API se configura en RetroFitCliente.kt
 1. UserController - /api/users
