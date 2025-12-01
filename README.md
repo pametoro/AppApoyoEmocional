@@ -124,7 +124,7 @@ Sigue estos pasos para compilar y ejecutar la aplicación en Android Studio:
   * Selecciona File > Open y navega hasta la carpeta del proyecto clonado.
   * Espera a que Gradle sincronice todas las dependencias.
 
-* # 3. Configurar el Backend:(EN MODIFICACIÓN)
+* # 3. Configurar el Backend:
   
   * Asegúrate de que el servidor del backend (los microservicios) esté en ejecución.
   * Abre el archivo app/src/main/java/com/example/appapoyoemocional/network/RetroFitCliente.kt.
@@ -144,11 +144,11 @@ Sigue estos pasos para compilar y ejecutar la aplicación en Android Studio:
 * Almacén de claves(.jks): El archivo de claves Java (.jks) keystore/upload-kestore.jks.
    * Credenciales: Las credenciales (alias y contraseña) para acceder a este almacén se gestionan de forma segura y no están incluidas en el repositoriio. Se pueden encontar en el archivo keystore.properties, que está listado en .gitignore para no ser subido al control de versiones.
 
-* # Código fuente:(EN MODIFICACIÓN)
+* # Código fuente:
   
   *  Aplicación móvil: El código fuente completo de la aplicación Android se encuentra en la raíz de este repositorio.
   *  Microservicios: El código fuente de los microservicios del backend se encuentra en un repositorio separado.
-     * URL del repositorio de backend: [enlace del repositorio de los microservicios]
+     * URL del repositorio de backend: [https://github.com/FeiSCaroca/backend-appmovil]
        
 * # Notas:
   * La aplicacion requiere permiso para usar la cámara para la funcionalidad de foto de perfil y  reconocimiento facial.
